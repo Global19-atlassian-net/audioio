@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="None">
+  <meta name="author" content="Benda-Lab">
+  
+  <link rel="shortcut icon" href="img/favicon.ico">
+  <title>audioio</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="css/theme.css" />
+  <link rel="stylesheet" href="css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Home";
+    var mkdocs_page_input_path = "index.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="js/jquery-2.1.1.min.js" defer></script>
+  <script src="js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href="." class="icon icon-home"> audioio</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="./search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <ul class="current">
+                    <li class="toctree-l1 current"><a class="reference internal current" href=".">Home</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#installation">Installation</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#usage">Usage</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#loading-audio-data">Loading audio data</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#writing-audio-data">Writing audio data</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#converting-audio-files">Converting audio files</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#playing-sounds">Playing sounds</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="" href="api/index.html">API reference</a>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href=".">audioio</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Home</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <p><a href="https://travis-ci.com/bendalab/audioio"><img alt="Build Status" src="https://travis-ci.com/bendalab/audioio.svg?branch=master" /></a>
+<a href="https://codecov.io/gh/bendalab/audioio"><img alt="codecov" src="https://codecov.io/gh/bendalab/audioio/branch/master/graph/badge.svg" /></a>
+<a href="https://badge.fury.io/py/audioio"><img alt="PyPI version" src="https://badge.fury.io/py/audioio.svg" /></a></p>
+<h1 id="audioio">audioio</h1>
+<p>Platform independent interfacing of numpy arrays of floats with audio
+files and devices.</p>
+<p><a href="https://bendalab.github.io/audioio">Documentation</a></p>
+<p><a href="https://github.com/bendalab/audioio">Git Repository</a></p>
+<p><a href="https://pypi.org/project/audioio">PyPI</a></p>
+<p>The audioio modules try to use whatever available audio module to achieve
+their tasks. The audioio package does not provide own code for decoding files
+and accessing audio hardware.</p>
+<h2 id="installation">Installation</h2>
+<p>Simply run (as superuser):</p>
+<pre><code>pip install audioio
+</code></pre>
+
+<p>Then you can use already installed audio packages for reading and
+writing audio files and for playing audio data. However, the support
+provided by the python standard library is limited to very basic wav
+files. If you need support for other audio file formats or for better
+sound output, you need to install additional packages.</p>
+<p>In particular, you might need to install the sndfile library for accessing
+various audio file formats</p>
+<pre><code>sudo apt-get install -y libsndfile1 libsndfile1-dev libffi-dev
+</code></pre>
+
+<p>and one of the many python wrappers for the sndfile library,
+e.g. SoundFile, wavefile, or scikits.audiolab:</p>
+<pre><code>sudo pip install SoundFile
+sudo pip install wavefile
+sudo pip install scikits.audiolab
+</code></pre>
+
+<p>For playing sounds, the portaudio library is the gold standard</p>
+<pre><code>sudo apt-get install libportaudio2 portaudio19-dev
+</code></pre>
+
+<p>that is interfaced by the python packages pyaudio or sounddevice:</p>
+<pre><code>sudo apt-get install python-pyaudio
+sudo pip install sounddevice
+</code></pre>
+
+<p>Run</p>
+<pre><code>&gt; audiomodules
+</code></pre>
+
+<p>to see which audio modules you have already installed on your system,
+which ones are recommended to install, and how to install them. By
+calling the script with the name of an audio module as an argument you
+get specific installation instructions for this module.</p>
+<h2 id="usage">Usage</h2>
+<pre><code>import audioio as aio
+</code></pre>
+
+<h3 id="loading-audio-data">Loading audio data</h3>
+<p>Load an audio file into a numpy array:</p>
+<pre><code>data, samplingrate = aio.load_audio('audio/file.wav')
+</code></pre>
+
+<p>The data are numpy arrays of floats ranging between -1 and 1.
+The arrays are either 1-D arrays for single channel data,
+or 2-day arrays with first axis time and second axis channel.</p>
+<p>You can also randomly access chunks of data of an audio file, without
+loading the entire file into memory. This is really handy for
+analysing very long sound recordings:</p>
+<pre><code># open audio file with a buffer holding 60 seconds of data:
+with aio.open_audio_loader('audio/file.wav', 60.0) as data:
+     block = 1000
+     rate = data.samplerate
+     for i in range(len(data)/block):
+         x = data[i*block:(i+1)*block]
+         # ... do something with x and rate
+</code></pre>
+
+<h3 id="writing-audio-data">Writing audio data</h3>
+<p>Write a numpy array into an audio file:</p>
+<pre><code>aio.write_audio('audio/file.wav', data, samplerate)
+</code></pre>
+
+<h3 id="converting-audio-files">Converting audio files</h3>
+<p>audioio provides a simple command line script to convert audio files:</p>
+<pre><code>&gt; audioconverter -o test.wav test.mp3
+</code></pre>
+
+<h3 id="playing-sounds">Playing sounds</h3>
+<p>Fade in and out and play a numpy array as a sound:</p>
+<pre><code>aio.fade(data, samplingrate, 0.2)
+aio.play(data, samplingrate)
+</code></pre>
+
+<p>Just beep for half a second and 440 Hz:</p>
+<pre><code>aio.beep(0.5, 440.0)
+aio.beep(0.5, 'a4')
+</code></pre>
+
+<p>Musical notes are translated into frequency with the <code>note2freq</code> function.</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/bendalab/audioio/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+      
+    </span>
+</div>
+    <script>var base_url = '.';</script>
+    <script src="js/theme.js" defer></script>
+      <script src="search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
+
+<!--
+MkDocs version : 1.1.2
+Build Date UTC : 2020-07-22 16:47:28.671726+00:00
+-->
